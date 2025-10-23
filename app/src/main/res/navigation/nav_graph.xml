@@ -3,26 +3,99 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/loginFragment">
+
+    <!-- Authentication Fragments -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.masterbike_kotlin.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+    </fragment>
 
     <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.masterbike_kotlin.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
-
+        android:id="@+id/registerFragment"
+        android:name="com.example.masterbike_kotlin.ui.auth.RegisterFragment"
+        android:label="Register"
+        tools:layout="@layout/fragment_register">
         <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_registerFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
     </fragment>
+
+    <!-- Main App Fragments -->
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.masterbike_kotlin.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
+        android:id="@+id/catalogFragment"
+        android:name="com.example.masterbike_kotlin.ui.catalog.CatalogFragment"
+        android:label="@string/catalog"
+        tools:layout="@layout/fragment_catalog">
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_catalogFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.masterbike_kotlin.ui.catalog.ProductDetailFragment"
+        android:label="Detalle de Producto"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="productId"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.masterbike_kotlin.ui.cart.CartFragment"
+        android:label="@string/cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.example.masterbike_kotlin.ui.checkout.CheckoutFragment"
+        android:label="Checkout"
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_checkoutFragment_to_catalogFragment"
+            app:destination="@id/catalogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.masterbike_kotlin.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_orderHistoryFragment"
+            app:destination="@id/orderHistoryFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderHistoryFragment"
+        android:name="com.example.masterbike_kotlin.ui.profile.OrderHistoryFragment"
+        android:label="@string/order_history"
+        tools:layout="@layout/fragment_order_history" />
+
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.masterbike_kotlin.ui.profile.AddressFragment"
+        android:label="Direcciones"
+        tools:layout="@layout/fragment_address" />
+
 </navigation>
